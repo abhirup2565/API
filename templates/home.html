@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        <label for="">Enter your location</label>
+        <input name="city" type="text">
+        <button name="submit" type="submit">Submit</button>
+    </form>
+    {% for data in datas["weather"] %}
+    {{ data["description"] }}
+{% endfor %}
+</body>
+</html>
