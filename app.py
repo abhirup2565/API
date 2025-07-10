@@ -32,13 +32,25 @@ def set_task():
     db.session.commit()
     return jsonify({"Message":"task has been created"})
 
-@app.route("/delete",methods=["POST","GET"])
+@app.route("/delete",methods=["Delete"])
 def delete_task():
     data=request.get_json()
     task=TodoDB.query.filter_by(id=data["ID"]).first()
-    db.session.delete(task)
-    db.session.commit()
-    return jsonify({"Message":"Task has been delete"})
+    if task:
+        db.session.delete(task)
+        db.session.commit()
+        return jsonify({"Message":"Task has been delete"})
+    return jsonify({"Message":"No such task"})
+
+@app.route("/update",methods=["PUT"])
+def update_task():
+    data=request.get_json()
+    task=TodoDB.query.filter_by(id=data["ID"]).first()
+    if task:
+        task.task=data["task"]
+        db.session.commit()
+        return jsonify({"Message":"Task has been updated"})
+    return jsonify({"Message":"No such task"})
 
     
     
