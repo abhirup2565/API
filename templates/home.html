@@ -6,6 +6,16 @@
     <title>Document</title>
 </head>
 <body>
+    {% if news %}
+    {% for article in news["articles"] %}
+    {{ article["title"] }}
+    {{ article["description"] }}
+    {{ article["source"]["name"] }}
+    <hr>
+    {% endfor %}
+    {% else %}
+    <h1>No news</h1>
+    {% endif %}
     <form action="" method="post">
         <label for="">Enter your location</label>
         <input name="city" type="text">
