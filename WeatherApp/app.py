@@ -3,9 +3,15 @@ from weather import main as get_weather
 
 app=Flask(__name__)
 
-@app.route("/")
+@app.route("/",methods=["GET","POST"])
 def index():
-    return render_template('index.html')
+    data=None
+    if request.method=="POST":
+        city=request.form['cityName']
+        country=request.form['countryName']
+        print(city,country)
+        data = get_weather(city_name=city,country_code=country)
+    return render_template('index.html',data=data)
 
 if __name__=="__main__":
     app.run(debug=True)

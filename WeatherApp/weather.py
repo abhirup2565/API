@@ -29,7 +29,7 @@ class WeatherData:
     icon:str
     temperature:float
 
-def main(city_name,state_code,country_code,API_KEY):
+def main(city_name,country_code,API_KEY=API_KEY,state_code=""):
     lat,lon=get_lat_lon("Mumbai","","India",API_KEY)
     weather_data=get_current_weather(lat,lon,API_KEY)
     return weather_data
